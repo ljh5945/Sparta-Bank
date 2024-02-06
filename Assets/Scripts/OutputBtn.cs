@@ -3,17 +3,53 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class OutBtn : MonoBehaviour
+public class OutputBtn : MonoBehaviour
 {
-    [SerializeField] private Text txt_Money;
-    [SerializeField] private InputField outputTxt_Money;
+    public Text ScriptTxt;
+    public Text ScriptTxT;
+    public GameObject EndPanel;
 
-    private int currentMoney;
+    int Balance = 50000;
+    int Current = 100000;
 
-    public void output()
+    private void Start()
     {
-        currentMoney += int.Parse(outputTxt_Money.text);
+        ScriptTxt.text = "50,000";
+        ScriptTxT.text = "100,000";
+    }
 
-        txt_Money.text = currentMoney.ToString();
+    public void MoneyMinus1()
+    {
+        Balance -= 10000;
+        Current += 10000;
+
+        ScriptTxt.text = Balance.ToString();
+        ScriptTxT.text = Current.ToString();
+    }
+
+    public void MoneyMinus2()
+    {
+        Balance -= 30000;
+        Current += 30000;
+
+        ScriptTxt.text = Balance.ToString();
+        ScriptTxT.text = Current.ToString();
+    }
+
+    public void MoneyMinus3()
+    {
+        Balance -= 50000;
+        Current += 50000;
+
+        ScriptTxt.text = Balance.ToString();
+        ScriptTxT.text = Current.ToString();
+    }
+
+    private void Update()
+    {
+        if (Balance < 0)
+        {
+            EndPanel.gameObject.SetActive(true);
+        }
     }
 }

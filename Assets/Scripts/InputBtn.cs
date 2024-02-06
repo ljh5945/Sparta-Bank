@@ -5,15 +5,51 @@ using UnityEngine.UI;
 
 public class InputBtn : MonoBehaviour
 {
-    [SerializeField] private Text txt_Money;
-    [SerializeField] private InputField inputTxt_Money;
+    public Text ScriptTxt;
+    public Text ScriptTxT;
+    public GameObject EndPanel;
 
-    private int currentMoney;
+    int Balance = 50000;
+    int Current = 100000;
 
-    public void Output()
+    private void Start()
     {
-        currentMoney -= int.Parse(inputTxt_Money.text);
+        ScriptTxt.text = "50,000";
+        ScriptTxT.text = "100,000";
+    }
 
-        txt_Money.text = currentMoney.ToString();
+    public void MoneyPlus1()
+    {
+        Balance += 10000;
+        Current -= 10000;
+
+        ScriptTxt.text = Balance.ToString();
+        ScriptTxT.text = Current.ToString();
+    }
+
+    public void MoneyPlus2()
+    {
+        Balance += 30000;
+        Current -= 30000;
+
+        ScriptTxt.text = Balance.ToString();
+        ScriptTxT.text = Current.ToString();
+    }
+
+    public void MoneyPlus3()
+    {
+        Balance += 50000;
+        Current -= 50000;
+
+        ScriptTxt.text = Balance.ToString();
+        ScriptTxT.text = Current.ToString();
+    }
+
+    private void Update()
+    {
+        if (Current <= 0)
+        {
+            EndPanel.gameObject.SetActive(true);
+        }
     }
 }
